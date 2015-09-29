@@ -9,7 +9,7 @@
         var table = $("#employeelist").DataTable({
             "processing": true,
             "serverSide": true,
-            "ajax": "../scripts/entrep/employee-objects.php",
+            "ajax": "../scripts/hr/employee-objects.php",
             "rowCallback": function (row, data) {
                 if ($.inArray(data.DT_RowId, selected) !== -1) {
                     $(row).addClass('selected');
@@ -87,18 +87,33 @@
         }
         // 2. Define what to do when XHR feed you the response from the server - Start
         //Get form data
-        var companyid = document.getElementById("companyid").value;
-        var companyname = document.getElementById("companyname").value;
-        var companyType = $("#companytype option:selected").text();
-        var mailaddr = document.getElementById("mailaddr").value;
-        var busiaddr = document.getElementById("busiaddr").value;
-        var regno = document.getElementById("regno").value;
-        var bankname = document.getElementById("bankname").value;
-        var accno = document.getElementById("accno").value;
+        var EMP_ID = document.getElementById("EMP_ID").value;
+        var COMPANY_ID = $("#COMPANY_ID option:selected").value;
+        var ETF = document.getElementById("mailaddr").value;
+        var EPF = document.getElementById("mailaddr").value;
+         var TITLE = document.getElementById("TITLE").value;
+        var FULL_NAME = document.getElementById("busiaddr").value;
+        var USED_NAME = document.getElementById("regno").value;
+        var GENDER = $("#GENDER option:selected").value;
+        var BIRTH_DATE = document.getElementById("BIRTH_DATE").value;
+         var CIVIL_STATUS = $("#CIVIL_STATUS option:selected").value;
+        var NIC_PASSPORT_NO = document.getElementById("NIC_PASSPORT_NO").value;
+        var ADDRESS = document.getElementById("ADDRESS").value;
+        var TELEPHONE = document.getElementById("TELEPHONE").value;
+        var MOBILE = document.getElementById("MOBILE").value;
+        var EMAIL = document.getElementById("EMAIL").value;
+        var SERVICE_TYPE = $("#SERVICE_TYPE option:selected").value;
+        var APPOINTMENT_DATE = document.getElementById("APPOINTMENT_DATE").value;
+        var CONFIRMATION_DATE = document.getElementById("CONFIRMATION_DATE").value;
+        var RESIGNATION_DATE = document.getElementById("RESIGNATION_DATE").value;
+        var STATUS = $("#STATUS option:selected").value;
 
-        var params = "COMPANY_ID=" + companyid + "&NAME=" + companyname + "&COMPANY_TYPE=" + companyType +
-                "&MAILING_ADD=" + mailaddr + "&BUSINESS_ADD=" + busiaddr + "&COM_REG_NO=" + regno +
-                "&BANK_NAME=" + bankname + "&BANK_ACC_NO=" + accno;
+        var params = "EMP_ID=" + EMP_ID  + "&COMPANY_ID=" + COMPANY_ID  + "&ETF=" + ETF  + "&EPF=" + EPF +
+                "&TITLE=" + TITLE  +"&FULL_NAME=" + FULL_NAME  + "&USED_NAME=" + USED_NAME  + "&GENDER=" + GENDER +
+               "&BIRTH_DATE=" + BIRTH_DATE  + "&CIVIL_STATUS=" + CIVIL_STATUS  + "&NIC_PASSPORT_NO=" + NIC_PASSPORT_NO +
+               "&ADDRESS=" + ADDRESS  + "&TELEPHONE=" + TELEPHONE  + "&MOBILE=" + MOBILE + 
+               "&EMAIL=" + EMAIL  + "&SERVICE_TYPE=" + SERVICE_TYPE  + "&APPOINTMENT_DATE =" + APPOINTMENT_DATE +
+               "&CONFIRMATION_DATE=" + CONFIRMATION_DATE  + "&RESIGNATION_DATE=" + RESIGNATION_DATE  + "&STATUS =" + STATUS;
         //Add operation type 
 
         params = params + "&opType=" + opType;
@@ -135,7 +150,7 @@
                 }
             }
         }
-        var params = "COMPANY_ID=" + rowId + "&opType=" + opType;
+        var params = "EMP_ID=" + rowId + "&opType=" + opType;
         xhr.open('POST', '../scripts/entrep/comp_back_end.php');
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(params);
@@ -144,20 +159,41 @@
     //loads DataTable row data to form
     function loadDataToForm(dataObject) {
         if(jQuery.isEmptyObject( dataObject["DT_RowId"])){
-           $("#companyid").val("");
+           $("#EMP_ID").val("");
         }
         else{
-           $("#companyid").val(dataObject["DT_RowId"].replace("row_", ""));  // get row id
+           $("#EMP_ID").val(dataObject["DT_RowId"].replace("row_", ""));  // get row id
         }
-        $("#companyname").val(dataObject[0]);
-        $("#companytype option").filter(function () {
-            return $(this).text() == dataObject[1];
+        $("#COMPANY_ID option").filter(function () {
+            return $(this).text() === dataObject[0];
         }).prop('selected', true);
-        $("#mailaddr").val(dataObject[2]);
-        $("#busiaddr").val(dataObject[3]);
-        $("#regno").val(dataObject[4]);
-        $("#bankname").val(dataObject[5]);
-        $("#accno").val(dataObject[6]);
+        
+        $("#ETF").val(dataObject[2]);
+        $("#EPF").val(dataObject[3]);
+       $("#TITLE option").filter(function () {
+            return $(this).text() === dataObject[4];
+        }).prop('selected', true);
+        
+        $("#FULL_NAME").val(dataObject[5]);
+        $("#USED_NAME").val(dataObject[6]);
+         $("#GENDER option").filter(function () {
+            return $(this).text() === dataObject[7];
+        }).prop('selected', true);
+        $("#BIRTH_DATE").val(dataObject[8]);
+         $("#CIVIL_STATUS option").filter(function () {
+            return $(this).text() === dataObject[9];
+        }).prop('selected', true);
+        $("#NIC_PASSPORT_NO").val(dataObject[10]);
+        $("#ADDRESS").val(dataObject[11]);
+        $("#TELEPHONE").val(dataObject[12]);
+        $("#MOBILE").val(dataObject[13]);
+        $("#EMAIL").val(dataObject[14]);
+        $("#SERVICE_TYPE").val(dataObject[15]);
+         $("#APPOINTMENT_DATE").val(dataObject[16]);
+        $("#CONFIRMATION_DATE").val(dataObject[17]);
+        $("#RESIGNATION_DATE").val(dataObject[18]);
+        $("#STATUS").val(dataObject[19]);
+        
     }
 
     //Enables and disables the control buttons
