@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2015 at 12:19 PM
+-- Generation Time: Sep 29, 2015 at 01:58 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -514,41 +514,50 @@ END$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `employee_pkg`() RETURNS int(11)
 BEGIN
 declare emp_id_ varchar(11) default null;
-declare name_ varchar(150) default null;
-declare nic_ varchar(15) default null;
-declare dob_ varchar(45) default null;
-declare gender_ varchar(45) default null;
-declare branch_ varchar(3) default null;
-declare address_ varchar(250) default null;
-declare contact_tel_ varchar(45) default null;
-declare contact_mob_ varchar(45) default null;
+declare company_id_ varchar(11) default null;
 declare epf_ varchar(45) default null;
 declare etf_ varchar(45) default null;
-declare desig_ varchar(45) default null;
-declare dept_ varchar(45) default null;
-declare active_ int(1) default null;
-
-declare desig_code_ varchar(45) default null;
-declare dept_code_ varchar(45) default null;
+declare title_ varchar(45) default null;
+declare full_name_ varchar(150) default null;
+declare used_name_ varchar(150) default null;
+declare gender_ varchar(45) default null;
+declare dob_ date default null;
+declare civil_status_ varchar(15) default null;
+declare nic_ varchar(15) default null;
+declare address_ varchar(150) default null;
+declare tel_ varchar(45) default null;
+declare mob_ varchar(45) default null;
+declare email_ varchar(3) default null;
+declare serv_type_ varchar(45) default null;
+declare appoinment_date_ date default null;
+declare confirmation_date_ date default null;
+declare resignation_date_ date default null;
+declare status_ varchar(10) default null;
 
 if(value_ is null) then
 return null;
 end if;	
 
-set emp_id_      := replace(substring(substring_index(value_, '||', 1), length(substring_index(value_, '||', 1 - 1)) + 1), '||', '');
-set name_        := replace(substring(substring_index(value_, '||', 2), length(substring_index(value_, '||', 2 - 1)) + 1), '||', '');
-set nic_         := replace(substring(substring_index(value_, '||', 3), length(substring_index(value_, '||', 3 - 1)) + 1), '||', '');
-set dob_         := replace(substring(substring_index(value_, '||', 4), length(substring_index(value_, '||', 4 - 1)) + 1), '||', '');
-set gender_      := replace(substring(substring_index(value_, '||', 5), length(substring_index(value_, '||', 5 - 1)) + 1), '||', '');
-set branch_      := replace(substring(substring_index(value_, '||', 6), length(substring_index(value_, '||', 6 - 1)) + 1), '||', '');
-set address_     := replace(substring(substring_index(value_, '||', 7), length(substring_index(value_, '||', 7 - 1)) + 1), '||', '');
-set contact_tel_ := replace(substring(substring_index(value_, '||', 8), length(substring_index(value_, '||', 8 - 1)) + 1), '||', '');
-set contact_mob_ := replace(substring(substring_index(value_, '||', 9), length(substring_index(value_, '||', 9 - 1)) + 1), '||', '');
-set epf_         := replace(substring(substring_index(value_, '||', 10), length(substring_index(value_, '||', 10 - 1)) + 1), '||', '');
-set etf_         := replace(substring(substring_index(value_, '||', 11), length(substring_index(value_, '||', 11 - 1)) + 1), '||', '');
-set desig_         := replace(substring(substring_index(value_, '||', 12), length(substring_index(value_, '||', 12 - 1)) + 1), '||', '');
-set dept_         := replace(substring(substring_index(value_, '||', 13), length(substring_index(value_, '||', 13 - 1)) + 1), '||', '');
-set active_      := replace(substring(substring_index(value_, '||', 14), length(substring_index(value_, '||', 14 - 1)) + 1), '||', '');
+set emp_id_      		:= replace(substring(substring_index(value_, '||', 1), length(substring_index(value_, '||', 1 - 1)) + 1), '||', '');
+set company_id_  		:= replace(substring(substring_index(value_, '||', 2), length(substring_index(value_, '||', 2 - 1)) + 1), '||', '');
+set etf_         		:= replace(substring(substring_index(value_, '||', 3), length(substring_index(value_, '||', 3 - 1)) + 1), '||', '');
+set epf_         		:= replace(substring(substring_index(value_, '||', 4), length(substring_index(value_, '||', 4 - 1)) + 1), '||', '');
+set title_       		:= replace(substring(substring_index(value_, '||', 5), length(substring_index(value_, '||', 5 - 1)) + 1), '||', '');
+set full_name_   		:= replace(substring(substring_index(value_, '||', 6), length(substring_index(value_, '||', 6 - 1)) + 1), '||', '');
+set used_name_   		:= replace(substring(substring_index(value_, '||', 7), length(substring_index(value_, '||', 7 - 1)) + 1), '||', '');
+set gender_      		:= replace(substring(substring_index(value_, '||', 8), length(substring_index(value_, '||', 8 - 1)) + 1), '||', '');
+set dob_         		:= replace(substring(substring_index(value_, '||', 9), length(substring_index(value_, '||', 9 - 1)) + 1), '||', '');
+set civil_status_		:= replace(substring(substring_index(value_, '||', 10), length(substring_index(value_, '||', 10 - 1)) + 1), '||', '');
+set nic_         		:= replace(substring(substring_index(value_, '||', 11), length(substring_index(value_, '||', 11 - 1)) + 1), '||', '');
+set address_     		:= replace(substring(substring_index(value_, '||', 12), length(substring_index(value_, '||', 12 - 1)) + 1), '||', '');
+set tel_         		:= replace(substring(substring_index(value_, '||', 13), length(substring_index(value_, '||', 13 - 1)) + 1), '||', '');
+set mob_         		:= replace(substring(substring_index(value_, '||', 14), length(substring_index(value_, '||', 14 - 1)) + 1), '||', '');
+set email_       		:= replace(substring(substring_index(value_, '||', 15), length(substring_index(value_, '||', 15 - 1)) + 1), '||', '');
+set serv_type_   		:= replace(substring(substring_index(value_, '||', 16), length(substring_index(value_, '||', 16 - 1)) + 1), '||', '');
+set appoinment_date_    := replace(substring(substring_index(value_, '||', 17), length(substring_index(value_, '||', 17 - 1)) + 1), '||', '');
+set confirmation_date_  := replace(substring(substring_index(value_, '||', 18), length(substring_index(value_, '||', 18 - 1)) + 1), '||', '');
+set resignation_date_   := replace(substring(substring_index(value_, '||', 19), length(substring_index(value_, '||', 19 - 1)) + 1), '||', '');
+set status_             := replace(substring(substring_index(value_, '||', 20), length(substring_index(value_, '||', 20 - 1)) + 1), '||', '');
 
 
 -- New
@@ -556,13 +565,8 @@ if(type_ = 'NEW') then
    
      
     INSERT INTO employee_tab VALUES
-    (emp_id_, name_, nic_,dob_,gender_,branch_,address_,contact_tel_,contact_mob_,epf_,etf_,active_);
+    (company_id_, emp_id_, etf_, epf_, title_, full_name_,used_name_,gender_,dob_,civil_status_,nic_,address_,tel_,mob_,email_,serv_type_,appoinment_date_,confirmation_date_,resignation_date_,status_);
 
-	insert into emp_department_tab values 
-    (emp_id_,dept_, sysdate(), null, 1);
-    
-    insert into emp_designation_tab values 
-    (emp_id_,desig_, sysdate(), null, 1);
 	
 	return emp_id_;
 
@@ -571,7 +575,7 @@ elseif(type_ = 'MODIFY') THEN
 
    -- validate before check in DB
  
-		if(emp_id_ is null || emp_id_ < "")then
+		if(emp_id_ is null || emp_id_ = 0)then
 			return null;
 		end if;
       
@@ -583,56 +587,39 @@ elseif(type_ = 'MODIFY') THEN
 		WHERE
 			emp_id = emp_id_;
 			
-		if(emp_id_ is null || emp_id_ = "")then
+		if(emp_id_ is null || emp_id_ = 0)then
 			return null;
 		end if;
 
 		UPDATE employee_tab 
-		SET name = name_, 
-        nic = nic_,
-        dob = dob_,
-        gender = gender_,
-        branch = branch_,
-        address = address_,
-        contact_tel = contact_tel_,
-        contact_mob = contact_mob_,
-        epf = epf_,
-        etf = etf_,
-        active = active_
+		SET etf = etf_, 
+			epf = epf_, 
+			title = title_,
+			full_name = full_name_,
+			used_name = used_name_,
+			gender = gender_,
+			birth_date = dob_,
+			civil_status = civil_status_,
+			nic_passport_no = nic_,
+			address = address_,
+			telephone = tel_,
+			mobile = mob_,
+			email = email_,
+			service_type = serv_type_,
+			appointment_date = appoinment_date_,
+			confirmation_date = confirmation_date_,
+			resignation_date = resignation_date_,
+			status = status_
 		WHERE
 			emp_id = emp_id_;
             
-        select dept_code into dept_code_ from emp_department_tab where emp_id = emp_id_ and active = 1;
         
-        if(dept_code_ is not null || dept_code_ != dept_) then 
-        update emp_department_tab
-        set end_date = sysdate(),
-        active = 0
-        where emp_id = emp_id_ and active = 1;
-        
-        insert into emp_department_tab values 
-    (emp_id_,desig_, sysdate(), null, 1);
-    
-    end if;
-    
-    if(desig_code_ is not null || desig_code_ != dept_) then 
-        update emp_designation_tab
-        set end_date = sysdate(),
-        active = 0
-        where emp_id = emp_id_ and active = 1;
-        
-        insert into emp_designation_tab values 
-    (emp_id_,desig_, sysdate(), null, 1);
-    
-    end if;
-        
-
 		return emp_id_;
 
 elseif(type_ = 'DELETE') THEN
 
    -- validate before check in DB
-   if(emp_id_ is null || emp_id_ = "")then
+   if(emp_id_ is null || emp_id_ = 0)then
 			return null;
 		end if;
 
@@ -643,7 +630,7 @@ elseif(type_ = 'DELETE') THEN
 		WHERE
 			emp_id = emp_id_;
     
-		if(emp_id_ is null || emp_id_ = "")then
+		if(emp_id_ is null || emp_id_ = 0)then
 			return null;
 		end if;
 
@@ -651,22 +638,7 @@ elseif(type_ = 'DELETE') THEN
 		WHERE
 			emp_id = emp_id_;
             
-	    
-         
-        if(dept_code_ is not null || dept_code_ != dept_) then 
-        update emp_department_tab
-        set end_date = sysdate(),
-        active = 0
-        where emp_id = emp_id_ and active = 1;
-     end if;
-    
-    if(desig_code_ is not null || desig_code_ != dept_) then 
-        update emp_designation_tab
-        set end_date = sysdate(),
-        active = 0
-        where emp_id = emp_id_ and active = 1;
-    end if;
-
+	 
 		return emp_id_;
 
 end if;
@@ -1060,18 +1032,27 @@ INSERT INTO `dynamic_menu` (`id`, `parent_id`, `title`, `url`, `menu_order`, `st
 --
 
 CREATE TABLE IF NOT EXISTS `employee_tab` (
-  `emp_id` varchar(10) NOT NULL,
-  `name` varchar(150) DEFAULT NULL,
-  `nic` varchar(15) DEFAULT NULL,
-  `dob` varchar(45) DEFAULT NULL,
-  `gender` varchar(45) DEFAULT NULL,
-  `branch` varchar(3) DEFAULT NULL,
-  `address` varchar(250) DEFAULT NULL,
-  `contact_tel` varchar(45) DEFAULT NULL,
-  `contact_mob` varchar(45) DEFAULT NULL,
-  `epf` varchar(45) DEFAULT NULL,
-  `etf` varchar(45) DEFAULT NULL,
-  `active` int(1) DEFAULT NULL
+  `company_id` int(11) NOT NULL,
+  `emp_id` int(11) NOT NULL,
+  `etf` varchar(50) DEFAULT NULL,
+  `epf` varchar(50) DEFAULT NULL,
+  `title` varchar(45) DEFAULT NULL,
+  `full_name` varchar(150) DEFAULT NULL,
+  `used_name` varchar(150) DEFAULT NULL,
+  `gender` enum('Male','Female') NOT NULL,
+  `birth_date` date DEFAULT NULL,
+  `civil_status` enum('Single','Married') DEFAULT NULL,
+  `nic_passport_no` varchar(10) NOT NULL,
+  `address` varchar(150) DEFAULT NULL,
+  `telephone` varchar(20) DEFAULT NULL,
+  `mobile` varchar(20) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `service_type` varchar(20) DEFAULT NULL,
+  `appointment_date` date DEFAULT NULL,
+  `confirmation_date` date DEFAULT NULL,
+  `resignation_date` date DEFAULT NULL,
+  `status` enum('Active','Inactive') DEFAULT NULL,
+  `image` blob
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1080,20 +1061,28 @@ CREATE TABLE IF NOT EXISTS `employee_tab` (
 -- Stand-in structure for view `employee_view`
 --
 CREATE TABLE IF NOT EXISTS `employee_view` (
-`emp_id` varchar(10)
-,`name` varchar(150)
-,`nic` varchar(15)
-,`dob` varchar(45)
-,`gender` varchar(45)
-,`address` varchar(250)
-,`contact_tel` varchar(45)
-,`contact_mob` varchar(45)
-,`epf` varchar(45)
-,`etf` varchar(45)
-,`branch` varchar(3)
+`company_id` int(11)
+,`emp_id` int(11)
+,`epf` varchar(50)
+,`etf` varchar(50)
+,`full_name` varchar(150)
+,`used_name` varchar(150)
+,`gender` enum('Male','Female')
+,`birth_date` date
+,`civil_status` enum('Single','Married')
+,`nic_passport_no` varchar(10)
+,`address` varchar(150)
+,`telephone` varchar(20)
+,`mobile` varchar(20)
+,`email` varchar(30)
+,`service_type` varchar(20)
+,`appointment_date` date
+,`confirmation_date` date
+,`resignation_date` date
 ,`designation` varchar(5)
 ,`department` varchar(5)
-,`active` int(1)
+,`status` enum('Active','Inactive')
+,`image` blob
 );
 -- --------------------------------------------------------
 
@@ -1316,7 +1305,7 @@ CREATE TABLE IF NOT EXISTS `student_tab` (
 --
 DROP TABLE IF EXISTS `employee_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `employee_view` AS select `e`.`emp_id` AS `emp_id`,`e`.`name` AS `name`,`e`.`nic` AS `nic`,`e`.`dob` AS `dob`,`e`.`gender` AS `gender`,`e`.`address` AS `address`,`e`.`contact_tel` AS `contact_tel`,`e`.`contact_mob` AS `contact_mob`,`e`.`epf` AS `epf`,`e`.`etf` AS `etf`,`e`.`branch` AS `branch`,(select `emp_designation_tab`.`deisgnation_code` from `emp_designation_tab` where ((`emp_designation_tab`.`emp_id` = `e`.`emp_id`) and (`emp_designation_tab`.`active` = 1))) AS `designation`,(select `emp_department_tab`.`dept_code` from `emp_department_tab` where ((`emp_department_tab`.`emp_id` = `e`.`emp_id`) and (`emp_department_tab`.`active` = 1))) AS `department`,`e`.`active` AS `active` from `employee_tab` `e`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `employee_view` AS select `e`.`company_id` AS `company_id`,`e`.`emp_id` AS `emp_id`,`e`.`epf` AS `epf`,`e`.`etf` AS `etf`,`e`.`full_name` AS `full_name`,`e`.`used_name` AS `used_name`,`e`.`gender` AS `gender`,`e`.`birth_date` AS `birth_date`,`e`.`civil_status` AS `civil_status`,`e`.`nic_passport_no` AS `nic_passport_no`,`e`.`address` AS `address`,`e`.`telephone` AS `telephone`,`e`.`mobile` AS `mobile`,`e`.`email` AS `email`,`e`.`service_type` AS `service_type`,`e`.`appointment_date` AS `appointment_date`,`e`.`confirmation_date` AS `confirmation_date`,`e`.`resignation_date` AS `resignation_date`,(select `emp_designation_tab`.`deisgnation_code` from `emp_designation_tab` where ((`emp_designation_tab`.`emp_id` = `e`.`emp_id`) and (`emp_designation_tab`.`active` = 1))) AS `designation`,(select `emp_department_tab`.`dept_code` from `emp_department_tab` where ((`emp_department_tab`.`emp_id` = `e`.`emp_id`) and (`emp_department_tab`.`active` = 1))) AS `department`,`e`.`status` AS `status`,`e`.`image` AS `image` from `employee_tab` `e`;
 
 --
 -- Indexes for dumped tables
@@ -1392,7 +1381,7 @@ ALTER TABLE `dynamic_menu`
 -- Indexes for table `employee_tab`
 --
 ALTER TABLE `employee_tab`
- ADD PRIMARY KEY (`emp_id`);
+ ADD PRIMARY KEY (`emp_id`), ADD UNIQUE KEY `nic_passport_no_UNIQUE` (`nic_passport_no`), ADD KEY `fk_employee_company1_idx` (`company_id`);
 
 --
 -- Indexes for table `exam_type_lov`
@@ -1459,6 +1448,16 @@ ALTER TABLE `student_payments`
 --
 ALTER TABLE `student_tab`
  ADD PRIMARY KEY (`id`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `employee_tab`
+--
+ALTER TABLE `employee_tab`
+ADD CONSTRAINT `fk_employee_company1` FOREIGN KEY (`company_id`) REFERENCES `company_tab` (`company_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
