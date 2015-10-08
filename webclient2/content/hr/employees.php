@@ -87,26 +87,26 @@
         }
         // 2. Define what to do when XHR feed you the response from the server - Start
         //Get form data
-        var EMP_ID = document.getElementById("EMP_ID").value;
-        var COMPANY_ID = $("#COMPANY_ID option:selected").value;
-        var ETF = document.getElementById("mailaddr").value;
-        var EPF = document.getElementById("mailaddr").value;
-        var TITLE = document.getElementById("TITLE").value;
-        var FULL_NAME = document.getElementById("busiaddr").value;
-        var USED_NAME = document.getElementById("regno").value;
-        var GENDER = $("#GENDER option:selected").value;
-        var BIRTH_DATE = document.getElementById("BIRTH_DATE").value;
-        var CIVIL_STATUS = $("#CIVIL_STATUS option:selected").value;
-        var NIC_PASSPORT_NO = document.getElementById("NIC_PASSPORT_NO").value;
-        var ADDRESS = document.getElementById("ADDRESS").value;
-        var TELEPHONE = document.getElementById("TELEPHONE").value;
-        var MOBILE = document.getElementById("MOBILE").value;
-        var EMAIL = document.getElementById("EMAIL").value;
-        var SERVICE_TYPE = $("#SERVICE_TYPE option:selected").value;
-        var APPOINTMENT_DATE = document.getElementById("APPOINTMENT_DATE").value;
-        var CONFIRMATION_DATE = document.getElementById("CONFIRMATION_DATE").value;
-        var RESIGNATION_DATE = document.getElementById("RESIGNATION_DATE").value;
-        var STATUS = $("#STATUS option:selected").value;
+        var EMP_ID = document.getElementById("emp_id").value;
+        var COMPANY_ID = $("#company_id option:selected").value;
+        var ETF = document.getElementById("etf").value;
+        var EPF = document.getElementById("epf").value;
+        var TITLE = document.getElementById("title").value;
+        var FULL_NAME = document.getElementById("full_name").value;
+        var USED_NAME = document.getElementById("used_name").value;
+        var GENDER = $("#gender option:selected").value;
+        var BIRTH_DATE = document.getElementById("date_of_birth").value;
+        var CIVIL_STATUS = $("#material_status option:selected").value;
+        var NIC_PASSPORT_NO = document.getElementById("nic").value;
+        var ADDRESS = document.getElementById("address").value;
+        var TELEPHONE = document.getElementById("telephone").value;
+        var MOBILE = document.getElementById("mobile").value;
+        var EMAIL = document.getElementById("email").value;
+        var SERVICE_TYPE = $("#service_type option:selected").value;
+        var APPOINTMENT_DATE = document.getElementById("appoinment_date").value;
+        var CONFIRMATION_DATE = document.getElementById("confirmed_date").value;
+        var RESIGNATION_DATE = document.getElementById("resignation_date").value;
+        var STATUS = $("#status option:selected").value;
 
         var params = "EMP_ID=" + EMP_ID + "&COMPANY_ID=" + COMPANY_ID + "&ETF=" + ETF + "&EPF=" + EPF +
                 "&TITLE=" + TITLE + "&FULL_NAME=" + FULL_NAME + "&USED_NAME=" + USED_NAME + "&GENDER=" + GENDER +
@@ -159,40 +159,40 @@
     //loads DataTable row data to form
     function loadDataToForm(dataObject) {
         if (jQuery.isEmptyObject(dataObject["DT_RowId"])) {
-            $("#EMP_ID").val("");
+            $("#emp_id").val("");
         }
         else {
-            $("#EMP_ID").val(dataObject["DT_RowId"].replace("row_", ""));  // get row id
+            $("#emp_id").val(dataObject["DT_RowId"].replace("row_", ""));  // get row id
         }
-        $("#COMPANY_ID option").filter(function () {
+        $("#company_id option").filter(function () {
             return $(this).text() === dataObject[0];
         }).prop('selected', true);
 
-        $("#ETF").val(dataObject[2]);
-        $("#EPF").val(dataObject[3]);
-        $("#TITLE option").filter(function () {
+        $("#etf").val(dataObject[2]);
+        $("#epf").val(dataObject[3]);
+        $("#title option").filter(function () {
             return $(this).text() === dataObject[4];
         }).prop('selected', true);
 
-        $("#FULL_NAME").val(dataObject[5]);
-        $("#USED_NAME").val(dataObject[6]);
-        $("#GENDER option").filter(function () {
+        $("#full_name").val(dataObject[5]);
+        $("#used_name").val(dataObject[6]);
+        $("#gender option").filter(function () {
             return $(this).text() === dataObject[7];
         }).prop('selected', true);
-        $("#BIRTH_DATE").val(dataObject[8]);
-        $("#CIVIL_STATUS option").filter(function () {
+        $("#date_of_birth").val(dataObject[8]);
+        $("#material_status option").filter(function () {
             return $(this).text() === dataObject[9];
         }).prop('selected', true);
-        $("#NIC_PASSPORT_NO").val(dataObject[10]);
-        $("#ADDRESS").val(dataObject[11]);
-        $("#TELEPHONE").val(dataObject[12]);
-        $("#MOBILE").val(dataObject[13]);
-        $("#EMAIL").val(dataObject[14]);
-        $("#SERVICE_TYPE").val(dataObject[15]);
-        $("#APPOINTMENT_DATE").val(dataObject[16]);
-        $("#CONFIRMATION_DATE").val(dataObject[17]);
-        $("#RESIGNATION_DATE").val(dataObject[18]);
-        $("#STATUS").val(dataObject[19]);
+        $("#nic").val(dataObject[10]);
+        $("#address").val(dataObject[11]);
+        $("#telephone").val(dataObject[12]);
+        $("#mobile").val(dataObject[13]);
+        $("#email").val(dataObject[14]);
+        $("#service_type").val(dataObject[15]);
+        $("#appoinment_date").val(dataObject[16]);
+        $("#confirmed_date").val(dataObject[17]);
+        $("#resignation_date").val(dataObject[18]);
+        $("#status").val(dataObject[19]);
 
     }
 
@@ -304,27 +304,29 @@
                                                 <h3 class="box-title">Employee Details</h3>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group" >
-                                                        <label for="employeeid" style="width:50%">Employee ID </label>
-                                                        <input type="text" class="form-control" id="employeeid" placeholder="Employee ID" >
+                                                        <label for="emp_id" >Emp ID </label>
+                                                        <input type="text" class="form-control input-sm" id="emp_id" placeholder="Employee ID" >
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group" >
-                                                        <label for="company">Company</label>
-                                                        <select id="company" class="form-control">                                               
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4"><div class="form-group" style="width:25%">
-                                                        <label for="company">Status</label>
-                                                        <select id="company" class="form-control">                                               
+                                                <div class="col-md-2"><div class="form-group" >
+                                                        <label for="status" style="width:25%">Status</label>
+                                                        <select id="status" class="form-control input-sm" >                                               
                                                         </select>
                                                     </div></div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group" >
+                                                        <label for="company_id" >Company</label>
+                                                        <select id="company_id" class="form-control input-sm" required >                                               
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2"></div>
+
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-3 col-sm-4">
+                                                <div class="col-md-3">
                                                     <!-- BOXES are complex enough to move the .box-header around.
                                                          This is an example of having the box header within the box body -->
 
@@ -342,53 +344,141 @@
                                                         </ul>
                                                     </div>
                                                 </div><!-- /.col (LEFT) -->
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="nav_summary_div">
-                                                        <div class="box-body">
-                                                            <div class="col-md-4">
+                                                <div class="col-md-9">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="nav_summary_div">
+                                                            <div class="box-body">
 
-                                                                IMAGE
+                                                                <div class="col-md-6">
+                                                                    <div class="box-header">
+                                                                        <i class="fa fa-text-width"></i>
+                                                                        <h3 class="box-title">Mr. XYZ</h3>
+                                                                    </div><!-- /.box-header -->
+                                                                    <div class="box-body">
+                                                                        <dl class="dl-horizontal">
+
+                                                                            <dt>Full Name :</dt>
+                                                                            <dd>Mr. Test Test</dd>
+                                                                            <dt>Date Of Birth</dt>
+                                                                            <dd>1970 - 10 - 10</dd>
+                                                                            <dt>Mobile</dt>
+                                                                            <dd>0772356521</dd>
+                                                                            <dt>Division/Branch</dt>
+                                                                            <dd>Chillaw</dd>
+                                                                            <dt>Designation</dt>
+                                                                            <dd>Manager</dd>
+                                                                            <dt>Status</dt>
+                                                                            <dd>Confirmed</dd>
+                                                                        </dl>
+                                                                    </div>
+                                                                </div>
+
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <div class="box-header">
-                                                                    <i class="fa fa-text-width"></i>
-                                                                    <h3 class="box-title">Mr. XYZ</h3>
-                                                                </div><!-- /.box-header -->
-                                                                <div class="box-body">
-                                                                    <dl class="dl-horizontal">
-                                                                        <dt>Emp ID:</dt>
-                                                                        <dd>02154874</dd>
-                                                                        <dt>Company:</dt>
-                                                                        <dd>XXXXXX (PVT) ltd</dd>
-                                                                        <dt>Full Name :</dt>
-                                                                        <dd>Mr. Test Test</dd>
-                                                                        <dt>Date Of Birth</dt>
-                                                                        <dd>1970 - 10 - 10</dd>
-                                                                        <dt>Mobile</dt>
-                                                                        <dd>0772356521</dd>
-                                                                        <dt>Division/Branch</dt>
-                                                                        <dd>Chillaw</dd>
-                                                                        <dt>Designation</dt>
-                                                                        <dd>Chillaw</dd>
-                                                                    </dl>
+
+                                                        </div><!-- /.table-responsive -->
+                                                        <div class="tab-pane" id="nav_personal_div"> 
+                                                            <div class="box-body" style="margin-top: 25px;">
+                                                                <div class="col-md-5">
+                                                                <div class="form-group" >
+                                                                    <label for="title" >Title</label>
+                                                                    <select id="title" class="form-control input-sm" required>
+                                                                        <option value="Mr">Mr</option>
+                                                                        <option value="Ms">Ms</option>
+                                                                        <option value="Dr">Dr</option>
+                                                                        <option value="Rev">Rev</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="full_name" >Full Name </label>
+                                                                    <input type="text" class="form-control input-sm" id="full_name" required placeholder="Full Name" >
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="used_name" >Used Name </label>
+                                                                    <input type="text" class="form-control input-sm" id="full_name" required placeholder="Used Name" >
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="date_of_birth" >Date Of Birth </label>
+                                                                    <input type="date" class="form-control input-sm" required id="date_of_birth">
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="gender" >Gender</label>
+                                                                    <select id="gender" class="form-control input-sm" required>
+                                                                        <option value="Male">Male</option>
+                                                                        <option value="Female">Female</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="material_status" >Material Status</label>
+                                                                    <select id="material_status" class="form-control input-sm">
+                                                                        <option value="Married">Married</option>
+                                                                        <option value="Unmarried">Unmarried</option>
+                                                                    </select>
+                                                                </div>
+                                                                    </div>
+                                                                    <div class="col-md-5">
+                                                                <div class="form-group" >
+                                                                    <label for="nic" >NIC / Passport </label>
+                                                                    <input type="text" class="form-control input-sm" id="nic" required placeholder="NIC or PASSPORT Number" >
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="address" >Address </label>
+                                                                    <input type="text" class="form-control input-sm" id="address" >
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="telephone" >Telephone </label>
+                                                                    <input type="text" class="form-control input-sm" id="telephone" >
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="mobile" >Mobile </label>
+                                                                    <input type="text" class="form-control input-sm" id="mobile" >
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="email" >E-mail </label>
+                                                                    <input type="text" class="form-control input-sm" id="email" >
                                                                 </div>
                                                             </div>
-
+                                                            </div>                                                            
                                                         </div>
-
-                                                    </div><!-- /.table-responsive -->
-                                                    <div class="tab-pane" id="nav_personal_div"> 
-                                                        <div class="box-body" style="margin-top: 25px;">
-                                                            Test
-                                                        </div>                                                            
-                                                    </div>
-                                                    <div class="tab-pane" id="nav_employment_div"> employment</div>
-                                                    <div class="tab-pane" id="nav_attendance_div"> attendance</div>
-                                                    <div class="tab-pane" id="nav_compensation_div"> compensation</div>
-                                                    <div class="tab-pane" id="nav_qualifications_div"> qualifications</div>
-                                                    <div class="tab-pane" id="nav_evaluation_div"> evaluation</div>
-                                                    <div class="tab-pane" id="nav_discipline_div"> discipline</div>
-                                                </div><!-- /.col (RIGHT) -->
+                                                        <div class="tab-pane" id="nav_employment_div">
+                                                            <div class="box-body" style="margin-top: 25px;">
+                                                                <div class="form-group" >
+                                                                    <label for="etf" >ETF no </label>
+                                                                    <input type="text" class="form-control input-sm" id="etf">
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="epf" >EPF no </label>
+                                                                    <input type="text" class="form-control input-sm" id="epf">
+                                                                </div>
+                                                                 <div class="form-group" >
+                                                                     <label for="service_type" >Service Type </label>
+                                                                <select id="service_type" class="form-control input-sm" required>
+                                                                    <option value="Probation">Probation</option>
+                                                                    <option value="Permanent">Permanent</option>
+                                                                    <option value="Temporary">Temporary</option>
+                                                                    <option value="Contract">Contract</option>
+                                                                </select>
+                                                                     </div>
+                                                                <div class="form-group" >
+                                                                    <label for="appoinment_date"  required>Appointment Date </label>
+                                                                    <input type="date" class="form-control input-sm" id="appoinment_date">
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="confirmed_date" >Confirmed Date </label>
+                                                                    <input type="date" class="form-control input-sm" id="confirmed_date">
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="resignation_date" >Resignation Date </label>
+                                                                    <input type="date" class="form-control input-sm" id="resignation_date">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="nav_attendance_div"> attendance</div>
+                                                        <div class="tab-pane" id="nav_compensation_div"> compensation</div>
+                                                        <div class="tab-pane" id="nav_qualifications_div"> qualifications</div>
+                                                        <div class="tab-pane" id="nav_evaluation_div"> evaluation</div>
+                                                        <div class="tab-pane" id="nav_discipline_div"> discipline</div>
+                                                    </div><!-- /.col (RIGHT) -->
+                                                </div>
                                             </div><!-- /.row -->
                                         </div><!-- /.box-body -->
 
